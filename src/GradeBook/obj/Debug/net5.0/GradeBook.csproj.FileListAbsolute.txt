@@ -1,0 +1,16 @@
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.exe
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.deps.json
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.runtimeconfig.json
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.runtimeconfig.dev.json
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.dll
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\ref\GradeBook.dll
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\bin\Debug\net5.0\GradeBook.pdb
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.csproj.AssemblyReference.cache
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.GeneratedMSBuildEditorConfig.editorconfig
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.AssemblyInfoInputs.cache
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.AssemblyInfo.cs
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.csproj.CoreCompileInputs.cache
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.dll
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\ref\GradeBook.dll
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.pdb
+D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\src\GradeBook\obj\Debug\net5.0\GradeBook.genruntimeconfig.cache
