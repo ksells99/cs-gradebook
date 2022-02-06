@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    class Book
+    public class Book
     {
         public Book(string name)
         {
@@ -17,46 +17,45 @@ namespace GradeBook
             grades.Add(grade);
         }
 
-        public void CalculateStats()
+        public Statistics GetStatistics()
         {
-            var result = 0.00;
-            var average = 0.00;
-            var highestGrade = double.MinValue;
-            var lowestGrade = double.MaxValue;
+            // Construct statistics object (from Statistics.cs) & define initial values
+            var result = new Statistics();
+            result.Average = 0.00;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
+            result.Total = 0.00;
 
     
             // Loop through list of grades
             foreach(var grade in grades) {
                 // Check if grade is higher than current highest - change if so
-                if(grade > highestGrade){
-                    highestGrade = grade;
+                if(grade > result.High){
+                    result.High = grade;
                 }
                 // Could use this instead of the if statement - returns highest of the two values
-                // highestGrade = Math.Max(grade, highestGrade);
+                // result.High = Math.Max(grade, result.High);
 
                 // Same for lowest grade
-                if(grade < lowestGrade){
-                    lowestGrade = grade;
+                if(grade < result.Low){
+                    result.Low = grade;
                 }
-                // lowestGrade = Math.Min(grade, lowestGrade);
+                // result.Low = Math.Min(grade, result.Low);
            
                 // Add grade to total
-                result += grade;
+                result.Total += grade;
             }
 
             // Calc average based on length of grade list
-            average = result / grades.Count;
+            result.Average = result.Total / grades.Count;
 
-            // Ouput - :N1 limits to 1dp
-            Console.WriteLine(name);
-            Console.WriteLine($"The highest grade score is: {highestGrade:N1}");
-            Console.WriteLine($"The lowest grade score is: {lowestGrade:N1}");
-            Console.WriteLine($"The average grade score is: {average:N1}");
+            return result;
+            
         }
 
         // Fields - list of grades (doubles) & book name
         private List<double> grades;
-        private string name;
+        public string name;
     }
 }
     
