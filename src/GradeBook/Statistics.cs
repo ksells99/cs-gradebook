@@ -6,5 +6,6 @@ namespace GradeBook
         public double High;
         public double Low;
         public double Total;
+        public char Letter;
     }
 }

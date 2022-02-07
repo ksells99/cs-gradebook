@@ -21,6 +21,24 @@ namespace GradeBook.Tests
             Assert.Equal(59.0, result.Average, 1);
             Assert.Equal(89.1, result.High, 1);
             Assert.Equal(13.5, result.Low, 1);
+            Assert.Equal('F', result.Letter);
+        }
+
+        [Fact]
+        public void CheckMaxGradeValues()
+        {
+            
+            var book = new Book("Test");
+            book.AddGrade(103.5);
+
+            var grades = book.grades;
+            var result = book.GetStatistics();
+
+            // Check that 103.5 didn't get added as >100
+            Assert.Equal(0, result.Total);
+
+            // This would fail as 103.5 >100 so not added
+            // Assert.Contains(103.5, grades);
         }
     }
 }
