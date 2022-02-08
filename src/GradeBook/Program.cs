@@ -7,7 +7,8 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryBook("Kai's Gradebook");
+            IBook book = new DiskBook("Kai's Gradebook");
+            // var book = new InMemoryBook("Kai's Gradebook");
 
             EnterGrades(book);
 

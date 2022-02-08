@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace GradeBook
 {
@@ -33,14 +34,12 @@ namespace GradeBook
         {
         }
 
-        // public virtual event GradeAddedDelegate GradeAdded;
+        // public abstract event GradeAddedDelegate GradeAdded;
 
         public abstract void AddGrade(double grade);
 
-        public virtual Statistics GetStatistics()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Statistics GetStatistics();
+
     }
 
     public class InMemoryBook : Book
@@ -98,90 +97,13 @@ namespace GradeBook
         {
             // Construct statistics object (from Statistics.cs) & define initial values
             var result = new Statistics();
-            result.Average = 0.00;
-            result.High = double.MinValue;
-            result.Low = double.MaxValue;
-            result.Total = 0.00;
-
     
-            // Loop through list of grades - few ways to do it
-
-            // 1) FOREACH
+            // Loop through list of grades
             foreach(var grade in grades) {
-                // Check if grade is higher than current highest - change if so
-                if(grade > result.High){
-                    result.High = grade;
-                }
-                // Could use this instead of the if statement - returns highest of the two values
-                // result.High = Math.Max(grade, result.High);
-
-                // Same for lowest grade
-                if(grade < result.Low){
-                    result.Low = grade;
-                }
-                // result.Low = Math.Min(grade, result.Low);
-           
-                // Add grade to total
-                result.Total += grade;
-            }
-
-            // 2) WHILE LOOP
-            // var index = 0;
-            // while(index < grades.Count )
-            // {
-            //     if(grades[index] > result.High){
-            //         result.High = grades[index];
-            //     }
-
-            //     if(grades[index] < result.Low){
-            //         result.Low = grades[index];
-            //     }
-        
-            //     result.Total += grades[index];
-
-            //     index++;
-            // };
-
-            // 3) FOR LOOP
-            // for(var i = 0; i < grades.Count; i++)
-            // {
-            //     if(grades[i] > result.High){
-            //         result.High = grades[i];
-            //     }
-
-            //     if(grades[i] < result.Low){
-            //         result.Low = grades[i];
-            //     }
-        
-            //     result.Total += grades[i];
-            // };
-
-
-            // Calc average based on length of grade list
-            result.Average = result.Total / grades.Count;
-            
-            // Calc letter grade equivalent based on avg number grade
-            switch(result.Average)
-            {
-                case var d when d >= 90.0:
-                    result.Letter = 'A';
-                    break;
-                case var d when d >= 80.0:
-                    result.Letter = 'B';
-                    break;
-                case var d when d >= 70.0:
-                    result.Letter = 'C';
-                    break;
-                case var d when d >= 60.0:
-                    result.Letter = 'D';
-                    break;
-                default:
-                    result.Letter = 'F';
-                    break;
+                result.Add(grade);
             }
 
             return result;
-            
         }
 
         // Fields - list of grades (doubles) & book name
@@ -198,6 +120,45 @@ namespace GradeBook
         public const string CATEGORY = "Science";
 
         // public override event GradeAddedDelegate GradeAdded;
+    }
+
+    public class DiskBook : Book
+    {
+        public DiskBook(string name) : base(name)
+        {
+        }
+
+        public override void AddGrade(double grade)
+        {
+            // Open text file if exists, otherwise create it - then add entered grade to the file
+            // Using statement ensures Dispose() is called (to release the file) regardless of successful grade write (similar to trycatch-finally statement)
+           using(var writer = File.AppendText($"{Name}.txt"))
+           {
+                writer.WriteLine(grade);    
+           }
+        }
+
+        public override Statistics GetStatistics()
+        {
+            var result = new Statistics();
+
+            // Open text file containing grades
+            using(var reader = File.OpenText($"{Name}.txt"))
+            {
+                // Read grade
+                var line = reader.ReadLine();
+              
+                while(line != null){
+                    // Convert from str to double & call Add method in Statistics.cs
+                    var number = double.Parse(line);
+                    result.Add(number);
+                    // Read next line from file & repeat - if no next line, break out of while loop
+                    line = reader.ReadLine();
+                }
+            }
+
+            return result;
+        }
     }
 }
     
