@@ -3,19 +3,63 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    public class Book
+    // public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+    public class NamedObject
     {
-        public Book(string name)
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+    }
+
+    public interface IBook
+    {
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name {get;}
+        // event GradeAddedDelegate GradeAdded;
+    }
+
+    public abstract class Book : NamedObject, IBook
+    {
+        protected Book(string name) : base(name)
+        {
+        }
+
+        // public virtual event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public virtual Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class InMemoryBook : Book
+    {
+        public InMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             Name = name;
         }
         // Called from Program.cs
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if(grade <= 100 && grade >= 0) {
                 // Add grade to list below
                 grades.Add(grade);
+                // if(GradeAdded != null)
+                // {
+                //     GradeAdded(this, new EventArgs());
+                // }
             }
             else
             {
@@ -24,7 +68,7 @@ namespace GradeBook
             
         }
 
-        public void AddLetterGrade(char letter)
+        public void AddGrade(char letter)
         {
             switch(letter)
             {
@@ -50,7 +94,7 @@ namespace GradeBook
 
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             // Construct statistics object (from Statistics.cs) & define initial values
             var result = new Statistics();
@@ -141,8 +185,19 @@ namespace GradeBook
         }
 
         // Fields - list of grades (doubles) & book name
-        public List<double> grades;
-        public string Name;
+        public List<double> grades;  
+
+        // Now inherited from base class NamedObject
+        // public string Name
+        // {
+        //     get;
+        //     // Prevents book name from being changed - can only set name from this file when Book first created above
+        //     private set;
+        // }
+
+        public const string CATEGORY = "Science";
+
+        // public override event GradeAddedDelegate GradeAdded;
     }
 }
     

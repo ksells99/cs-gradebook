@@ -9,7 +9,7 @@ namespace GradeBook.Tests
         public void CalculateGradeBookStats()
         {
             // Arrange
-            var book = new Book("");
+            var book = new InMemoryBook("");
             book.AddGrade(89.1);
             book.AddGrade(13.5);
             book.AddGrade(74.3);
@@ -28,7 +28,7 @@ namespace GradeBook.Tests
         public void CheckMaxGradeValues()
         {
             
-            var book = new Book("Test");
+            var book = new InMemoryBook("Test");
             book.AddGrade(103.5);
 
             var grades = book.grades;

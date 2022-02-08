@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = GradeBook.Tests
-build_property.ProjectDir = D:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\test\GradeBook.Tests\
+build_property.ProjectDir = d:\Kai-2\Pluralsight Course\C# Fundamentals\gradebook\test\GradeBook.Tests\
